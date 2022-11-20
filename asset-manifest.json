@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/hackwestern/static/css/main.130b371c.css",
+    "main.js": "/hackwestern/static/js/main.9aede212.js",
+    "static/media/LoginCloud1.png": "/hackwestern/static/media/LoginCloud1.156314eb901700149410.png",
+    "static/media/spotifylogo.png": "/hackwestern/static/media/spotifylogo.25cd5b2ac10901943b93.png",
+    "static/media/Her_Loss.jpeg.webp": "/hackwestern/static/media/Her_Loss.jpeg.ca9b7bd7e4c04a3495f9.webp",
+    "static/media/versesLogo.png": "/hackwestern/static/media/versesLogo.d2e175495951693c52ea.png",
+    "static/media/peoplesOutline.png": "/hackwestern/static/media/peoplesOutline.b431800ed27d10234ac0.png",
+    "index.html": "/hackwestern/index.html",
+    "main.130b371c.css.map": "/hackwestern/static/css/main.130b371c.css.map",
+    "main.9aede212.js.map": "/hackwestern/static/js/main.9aede212.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.130b371c.css",
+    "static/js/main.9aede212.js"
+  ]
+}
