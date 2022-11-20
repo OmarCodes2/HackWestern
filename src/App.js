@@ -8,9 +8,13 @@ function App() {
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
     const RESPONSE_TYPE = "token"
 
+    const listSongs = [];
+    const listArtists = [];
+
     const [token, setToken] = useState("")
     const [searchKey, setSearchKey] = useState("")
     const [artists, setArtists] = useState([])
+    const [songs, setSongs] = useState([])
 
     // const getToken = () => {
     //     let urlParams = new URLSearchParams(window.location.hash.replace("#","?"));
@@ -42,7 +46,18 @@ function App() {
 
     const searchArtists = async (e) => {
         e.preventDefault()
-        const {data} = await axios.get("https://api.spotify.com/v1/me/top/artists", {
+        const {data} = await axios.get("https://api.spotify.com/v1/me/top/artists?limit=50", {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+
+        setArtists(data.items)
+    }
+
+    const searchSongs = async (e) => {
+        e.preventDefault()
+        const {data} = await axios.get("https://api.spotify.com/v1/me/top/tracks?limit=50", {
             headers: {
                 Authorization: `Bearer ${token}`
             },
@@ -51,9 +66,36 @@ function App() {
                 type: "artist"
             }*/
         })
-
-        setArtists(data.items)
+        setSongs(data.items);
+        
     }
+
+    const callBoth = async (e) => {
+        searchSongs(e);
+        console.log(songs)
+        searchArtists(e);
+        console.log(artists);
+
+        for (let i = 0; i < 50; i++) {
+            const artistObject = {
+                id : i,
+                name: artists[i].name,
+                image : artists[i].image
+            };
+            const songsObject = {
+                id : i,
+                name : songs[i].name,
+                artist : songs[i].artists.name,
+                
+            }
+            listSongs.push(songsObject);
+            listArtists.push(artistObject);
+            
+        }
+        console.log(listSongs);
+        console.log(listArtists);
+    }
+
 
     const renderArtists = () => {
         return artists.map(artist => (
@@ -63,6 +105,19 @@ function App() {
             </div>
         ))
     }
+
+    // const renderSongs = () => {
+    //     return artists.map(artist => (
+    //         <div key={artist.id}>
+    //             {artist.images.length ? <img width={"100%"} src={artist.images[0].url} alt=""/> : <div>No Image</div>}
+    //             {artist.name}
+    //         </div>
+    //     ))
+    // }
+
+ 
+
+
 
     return (
         <div className="App">
@@ -74,9 +129,8 @@ function App() {
                     : <button onClick={logout}>Logout</button>}
 
                 {token ?
-                    <form onSubmit={searchArtists}>
-                        <input type="text" onChange={e => setSearchKey(e.target.value)}/>
-                        <button type={"submit"}>Search</button>
+                    <form onSubmit={callBoth}>
+                        <button type={"Play Game"}>Search</button>
                     </form>
 
                     : <h2>Please login</h2>
