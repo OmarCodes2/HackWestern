@@ -6,7 +6,6 @@ import personSingularOutline from "./images/personSingularOutline.png";
 import versesLogo from "./images/versesLogo.png";
 import axios from "axios";
 import loginCloud1 from "./images/LoginCloud1.png";
-import { Link } from "react-router-dom";
 import Game from "./game";
 let listSongs = [];
 let listArtists = [];
