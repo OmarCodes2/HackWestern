@@ -60,7 +60,7 @@ function LoginPage() {
       </div>
       <div className="logoTitle">
         <img style={{ height: 80 }} src={versesLogo} className="logoWrapper" />
-        <h2 className="versesTitle">verses</h2>
+        <h2 className="versesTitle titleWrapper">verses</h2>
       </div>
       <div className="text">
         <div className="whiteText">a &nbsp;</div>

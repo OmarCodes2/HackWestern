@@ -8,12 +8,16 @@ function ScorePage() {
   return (
     <div className="backgroundScorePage">
       <div className="logoTitle">
-        <img style={{ height: 80 }} src={versesLogo} className="logoWrapper" />
-        <h2 className="versesTitle">verses</h2>
+        <img
+          style={{ height: 100, width: 100 }}
+          src={versesLogo}
+          className="logoWrapper"
+        />
+        <h2 className="versesTitle titleWrapper">verses</h2>
       </div>
       <div className="text">
         <div className="ellipse">
-          <img src={music} />
+          <img src={music} style={{ height: 200, width: 200 }} />
         </div>
       </div>
       <div className="congrats ">congrats!</div>
@@ -22,7 +26,7 @@ function ScorePage() {
         <button className="buttonTwo">
           <img
             src={peoplesOutline}
-            style={{ height: 30, width: 30 }}
+            style={{ height: 50, width: 50 }}
             className="spotifyImage"
           />
           Share Quiz
@@ -32,7 +36,7 @@ function ScorePage() {
         <button className="buttonTwo">
           <img
             src={repeat}
-            style={{ height: 30, width: 30 }}
+            style={{ height: 60, width: 60 }}
             className="spotifyImage"
           />
           Take Again
