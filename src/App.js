@@ -7,6 +7,9 @@ import versesLogo from "./images/versesLogo.png";
 import axios from "axios";
 import loginCloud1 from "./images/LoginCloud1.png";
 import { Link } from "react-router-dom";
+import Game from "./game";
+let listSongs = [];
+let listArtists = [];
 
 function App() {
   const CLIENT_ID = "fcc0e957cd3141beb471ba64fa7e50c0";
@@ -14,13 +17,11 @@ function App() {
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const RESPONSE_TYPE = "token";
 
-  let listSongs = [];
-  let listArtists = [];
-
   const [token, setToken] = useState("");
   const [searchKey, setSearchKey] = useState("");
   const [artists, setArtists] = useState([]);
   const [songs, setSongs] = useState([]);
+  const [screen, setScreen] = useState(0);
 
   // const getToken = () => {
   //     let urlParams = new URLSearchParams(window.location.hash.replace("#","?"));
@@ -83,44 +84,46 @@ function App() {
     setSongs(data.items);
   };
 
-  const callBoth = async (e) => {
+  const callBoth = (e) => {
     searchSongs(e);
-    console.log(songs);
     searchArtists(e);
-    console.log(artists);
 
     for (let i = 0; i < 50; i++) {
       const artistObject = {
         id: i,
         name: artists[i].name,
-        image: artists[i].image,
+        img: artists[i].images[0].url,
       };
       const songsObject = {
         id: i,
-        name: songs[i].name,
-        artist: songs[i].artists.name,
+        name: songs[i].name + " - " + songs[i].artists[0].name,
+        img: songs[i].album.images[0].url,
       };
       listSongs.push(songsObject);
       listArtists.push(artistObject);
     }
-    console.log("hello");
+    console.log("list of songs");
     console.log(listSongs);
+    console.log("list of artists");
     console.log(listArtists);
+    setScreen(1);
   };
 
+  // const renderArtists = () => {
+  //   return artists.map((artist) => <div key={artist.id}></div>);
+  // };
+
   const renderArtists = () => {
-    console.log("hello");
-    console.log(listSongs);
-    console.log(listArtists);
     return artists.map((artist) => (
-      <div key={artist.id}>
-        {artist.images.length ? (
-          <img width={"100%"} src={artist.images[0].url} alt="" />
-        ) : (
-          <div>No Image</div>
-        )}
-        {artist.name}
-      </div>
+      <div></div>
+      // <div key={artist.id}>
+      //   {artist.images.length ? (
+      //     <img width={"100%"} src={artist.images[0].url} alt="" />
+      //   ) : (
+      //     <div>No Image</div>
+      //   )}
+      //   {artist.name}
+      // </div>
     ));
   };
 
@@ -133,57 +136,70 @@ function App() {
   //     ))
   // }
 
-  return (
-    <div className="background">
-      <h1 className="signInTitle">
-        {/* <img src={loginCloud1} /> */}
-        sign in
-      </h1>
-      <div className="text">
-        <div className="ellipse">
-          <img src={personSingularOutline} />
-        </div>
-      </div>
-      <div className="logoTitle">
-        <img style={{ height: 80 }} src={versesLogo} className="logoWrapper" />
-        <div className="versesTitle">verses</div>
-      </div>
-      <div className="text">
-        <div className="whiteText">a &nbsp;</div>
-        <div className="greenText">music quiz &nbsp;</div>
-        <div className="whiteText">for </div>
-      </div>
-      <div className="text whiteText">friends versus friends</div>
-      {token ? (
-        <button className="small_button" onClick={callBoth} type={"Play Game"}>
-          Start!
-        </button>
-      ) : (
-        <div></div>
-      )}
-      {!token ? (
-        <a
-          href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=user-top-read`}
-        >
-          <div className="text buttonWrapper">
-            <button className="button">
-              <img
-                src={spotifylogo}
-                style={{ height: 30, width: 30 }}
-                className="spotifyImage"
-              />
-              Continue with Spotify
-            </button>
+  if (screen == 0) {
+    return (
+      <div className="background">
+        <h1 className="signInTitle">
+          {/* <img src={loginCloud1} /> */}
+          sign in
+        </h1>
+        <div className="text">
+          <div className="ellipse">
+            <img src={personSingularOutline} />
           </div>
-        </a>
-      ) : (
-        <button className="small_button" onClick={logout}>
-          Logout
-        </button>
-      )}
-      {renderArtists()}
-    </div>
-  );
+        </div>
+        <div className="logoTitle">
+          <img
+            style={{ height: 80 }}
+            src={versesLogo}
+            className="logoWrapper"
+          />
+          <div className="versesTitle">verses</div>
+        </div>
+        <div className="text">
+          <div className="whiteText">a &nbsp;</div>
+          <div className="greenText">music quiz &nbsp;</div>
+          <div className="whiteText">for </div>
+        </div>
+        <div className="text whiteText">friends versus friends</div>
+        {token ? (
+          <button
+            className="small_button"
+            onClick={callBoth}
+            type={"Play Game"}
+          >
+            Start!
+          </button>
+        ) : (
+          <div></div>
+        )}
+        {!token ? (
+          <a
+            href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=user-top-read`}
+          >
+            <div className="text buttonWrapper">
+              <button className="button">
+                <img
+                  src={spotifylogo}
+                  style={{ height: 30, width: 30 }}
+                  className="spotifyImage"
+                />
+                Continue with Spotify
+              </button>
+            </div>
+          </a>
+        ) : (
+          <button className="small_button" onClick={logout}>
+            Logout
+          </button>
+        )}
+        {renderArtists()}
+      </div>
+    );
+  } else if (screen == 1) {
+    console.log(listArtists);
+    return <Game stuff={[listArtists, listSongs]} />;
+  }
 }
 
 export default App;

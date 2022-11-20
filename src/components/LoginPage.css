@@ -11,11 +11,27 @@ body {
   align-items: center;
   height: 100vh;
 }
+
+.backgroundScorePage {
+  background-image: linear-gradient(rgb(26, 167, 78), #6e0080);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 .text {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+}
+.text {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-family: "DM Sans", sans-serif;
 }
 
 .logoTitle {
@@ -23,6 +39,13 @@ body {
   flex-direction: row;
   justify-content: center;
   gap: 2vh;
+}
+
+.logoTitle2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 .button {
   height: 50px;
@@ -53,6 +76,11 @@ body {
 .logoWrapper {
   display: flex;
   gap: 4vh;
+}
+
+.logoWrapper2 {
+  padding-right: 30px;
+  position: relative;
 }
 
 .button:hover {
@@ -88,7 +116,21 @@ body {
   text-shadow: 2px 2px 8px black;
   line-height: 120px;
 }
-
+.versesTitle2 {
+  font-size: 48px;
+  font-weight: 400;
+  font-family: "DM Sans";
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-shadow: 2px 2px black;
+  padding-right: 50px;
+  position: absolute;
+}
+.titleWrapper {
+}
 .signInTitle {
   font-size: 64px;
   font-weight: 400;
@@ -109,4 +151,38 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.congrats {
+  font-size: 64px;
+  color: white;
+  font-family: "DM Sans", sans-serif;
+  text-shadow: 2px 2px #6e0080;
+}
+
+.buttonWrapper2 {
+  padding-top: 20px;
+}
+
+.buttonTwo {
+  height: 50px;
+  width: 200px;
+  border: none;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  padding-right: 20px;
+  font-family: "DM Sans", sans-serif;
+}
+
+.scoreMessage {
+  font-size: 30px;
+  color: #1ed760;
+  text-shadow: 2px 2px black;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 700;
+  padding-bottom: 30px;
 }
