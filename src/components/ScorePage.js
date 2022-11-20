@@ -36,7 +36,7 @@ function ScorePage(props) {
           Share Quiz
         </button>
       </div>
-      <div className="text buttonWrapper">
+      <div className="text buttonWrapper2">
         <button className="buttonTwo" onClick={replay}>
           <img
             src={repeat}
