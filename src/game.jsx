@@ -84,8 +84,8 @@ function Game(props) {
 
     if (correct) {
       setCount(count + 1);
-      setQuestion(questions[getRandomInt(2)]);
       setType(types[getRandomInt(2)]);
+      setQuestion(questions[getRandomInt(2)]);
       setAnswers(() => {
         if (question.id === 0 || question.id === 1) {
           let numbers = [];
@@ -96,7 +96,7 @@ function Game(props) {
             }
             if (numbers.length === 4) break;
           }
-
+          console.log(type.id);
           return [
             props.stuff[type.id][numbers[0]],
             props.stuff[type.id][numbers[1]],
@@ -104,6 +104,7 @@ function Game(props) {
             props.stuff[type.id][numbers[3]],
           ];
         }
+        this.forceUpdate();
       });
     } else {
       setScreen(1);
@@ -111,12 +112,15 @@ function Game(props) {
   };
 
   if (screen == 0) {
+    console.log("render");
     return (
       <div className="game_body">
         <img className="logo_img" src={logo} alt="" />
         <div className="title">Question</div>
         <div className="question">
-          {question.begin + type.thing + question.end}
+          {question.begin}
+          {type.thing}
+          {question.end}
         </div>
         <div className="answer_container">
           {answers?.map((content) => (
