@@ -1,8 +1,6 @@
 # Verses
 ## Description 
 
-Live at: https://omarcodes2.github.io/hackwestern/
-
 This is a project our team created for Hack Western 9, where we were awarded the Ogranizer's Choice Award (Top 10), out of over 400 competitors! 
 Check out our DevPost Here: https://devpost.com/software/verses
 
